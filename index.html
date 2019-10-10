@@ -2,10 +2,14 @@
 <html>
     <head>
         <title>Web Calculator</title>
-        <link href="node_modules/bootstrap/dist/css/bootstrap.css"  rel="stylesheet" type="text/css"/>
+        <link href="style/bootstrap.css"  rel="stylesheet" type="text/css"/>
     </head>
+    <script src="js/main.js"></script>
     
     <style>
+            body{
+                    background:grey;
+            }
         .container{
             width: 400px;
             border:1px solid #f4f4f4;
@@ -13,7 +17,7 @@
             overflow: hidden;
         }
         .left{
-            border-right: 1px solid #222222;
+            border-right: 1px solid ghostwhite;
         }
         .row{
             margin:1px;
@@ -22,63 +26,118 @@
             margin:2px;
             padding:5px;
         }
+        .cell:hover{
+            padding:6px;
+            background:#dddef8;
+            margin-left:8px;
+        }
+        .screen{
+            background:#dddef8;
+            height:70px;
+            margin-top:5px;
+            padding: 5px;
+        }
+        #result{
+            margin-left: 300px;
+            
+            overflow: hidden;
+            float:right;
+        }
+        #valueOne,#valueTwo,#valueThree{
+            display: none;
+        }
     
     </style>
 
     <body>
+        <span id="valueOne">0</span>
+        <span id="valueTwo">0</span>
+        <span id="valueThree">0</span>
         <!-- Container -->
             <div class="container">
+                <!--Screen -->
+                <div class="row">
+                    <div class="col-md-12 screen" id="screen">
+                        <p id="inputValue">0 </p>
+                        
+                        <p  id="result"> 0 </p>
+                    </div>
+                </div>
                 <!-- -->
                 <div class="row">
 
                         <div class="col-md-8 left">
-                            <!--Row 1 -->
+                            <!--Row 1:: -->
                             <div class="row">
                                     <div class="col-md-2 cell">
-                                            <button class="btn btn-default">1</button>
+                                            <button class="btn btn-default" id="seven" onclick="checkIfValExist(7)">7</button>
                                     </div>
                                     <div class="col-md-2 cell">
-                                            <button class="btn btn-default">2</button>
+                                            <button class="btn btn-default" id="eight" onclick="checkIfValExist(8)">8</button>
                                     </div>
                                     <div class="col-md-2 cell">
-                                            <button class="btn btn-default">3</button>
+                                            <button class="btn btn-default" onclick="checkIfValExist(9)">9</button>
                                     </div>
                                     <div class="col-md-2 cell">
-                                            <button class="btn btn-default">+</button>
+                                            <button class="btn btn-default" onclick="checkIfValExist('/')">/</button>
                                     </div>
                             </div> 
                             <!--Row 2 -->
                             <div class="row">
                                     <div class="col-md-2 cell">
-                                            <button class="btn btn-default">4</button>
+                                            <button class="btn btn-default" onclick="checkIfValExist(4)">4</button>
                                     </div>
                                     <div class="col-md-2 cell">
-                                            <button class="btn btn-default">5</button>
+                                            <button class="btn btn-default" onclick="checkIfValExist(5)">5</button>
                                     </div>
                                     <div class="col-md-2 cell">
-                                            <button class="btn btn-default">6</button>
+                                            <button class="btn btn-default" onclick="checkIfValExist(6)">6</button>
                                     </div>
                                     <div class="col-md-2 cell">
-                                            <button class="btn btn-default">-</button>
+                                            <button class="btn btn-default" onclick="checkIfValExist('*')">*</button>
                                     </div>
+                                    <div class="col-md-2 cell">
+                                        <button class="btn btn-default" onclick="checkIfValExist('%')">&nbsp; % &nbsp;</button>
+                                </div>
                             </div> 
                             <!--Row 3 -->
                             <div class="row">
                                     <div class="col-md-2 cell">
-                                            <button class="btn btn-default">7</button>
+                                            <button class="btn btn-default" onclick="checkIfValExist(1)">1</button>
                                     </div>
                                     <div class="col-md-2 cell">
-                                            <button class="btn btn-default">8</button>
+                                            <button class="btn btn-default" onclick="checkIfValExist(2)">2</button>
                                     </div>
                                     <div class="col-md-2 cell">
-                                            <button class="btn btn-default">9</button>
+                                            <button class="btn btn-default" onclick="checkIfValExist(3)">3</button>
                                     </div>
                                     <div class="col-md-2 cell">
-                                            <button class="btn btn-default">*</button>
+                                            <button class="btn btn-default" onclick="checkIfValExist('-')">-</button>
                                     </div>
+                                    <div class="col-md-2 cell">
+                                        <button class="btn btn-default" onclick="checkIfValExist('-')">Del &nbsp;</button>
+                                </div>
+                            </div> 
+                            <!--Row 4 -->
+                            <div class="row">
+                                    <div class="col-md-2 cell">
+                                            <button class="btn btn-default">.</button>
+                                    </div>
+                                    <div class="col-md-2 cell">
+                                            <button class="btn btn-default" onclick="checkIfValExist(0)">0</button>
+                                    </div>
+                                    <div class="col-md-2 cell">
+                                            <button class="btn btn-default" onclick="checkIfValExist('=')">=</button>
+                                    </div>
+                                    <div class="col-md-2 cell" >
+                                            <button class="btn btn-default" onclick="checkIfValExist('+')">+</button>
+                                    </div>
+                                    <div class="col-md-2 cell" >
+                                        <button class="btn btn-default" onclick="checkIfValExist('clr')">Clear</button>
+                                </div>
                             </div> 
                         </div>
-
+                        <!--Right hand side -->
                         <div class="col-md-4">
 
                         </div>
